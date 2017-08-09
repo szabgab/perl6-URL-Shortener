@@ -1,0 +1,22 @@
+% my (%h) = @_;
+<html>
+<head>
+  <title>URL Shortener</title>
+  <link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+<h1>URL Shortener</h1>
+<form method="POST" action="/shorten">
+<input type="text" name="url" id="url">
+<input type="submit" value="Shorten" id="submit">
+</form>
+% if %h<error_missing_url> {
+   <span class="error">
+   Missing URL.
+   </span>
+% }
+
+
+</body>
+</html>
+
