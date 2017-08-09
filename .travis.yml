@@ -1,0 +1,15 @@
+sudo: required
+language: generic
+services:
+    - docker
+env:
+    - AUTHOR_TESTING=1
+install:
+    - docker build -t szabgab/url-shortener .
+script:
+    - docker run szabgab/url-shortener prove6 -l
+after_success:
+    - if [ "$TRAVIS_BRANCH" == "master" ]; then
+          docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+          docker push szabgab/url-shortener;
+      fi
